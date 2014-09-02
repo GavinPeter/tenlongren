@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>天龍人頭罩產生器</title>
+  <style>
+  body, html {
+    height: 100%;
+    background-color: #eee;
+  }
+  body {
+    padding: 0; margin: 0;
+    background: #ffffff; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #cccccc 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffffff), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, #ffffff 0%,#cccccc 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%,#cccccc 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center, #ffffff 0%,#cccccc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    copy
+  }
+  #viewport {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    margin-left: -100px;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.30s ease-in-out;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+  }
+  #viewport:hover {
+    background-color: white;
+    -webkit-box-shadow: 0 0 300px 1500px rgba(255,255,255,1);
+    -moz-box-shadow: 0 0 300px 1500px rgba(255,255,255,1);
+    -o-box-shadow: 0 0 300px 1500px rgba(255,255,255,1);
+    -ms-box-shadow: 0 0 300px 1500px rgba(255,255,255,1);
+    transition: all 0.30s ease-in-out;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+  }
+  #viewport p {
+    position: absolute;
+    top: 100%;
+    left:0;
+    width: 100%;
+    text-align: center;
+    line-height: 24px;
+    color: #333;
+  }
+  #viewport input#file-selector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+    cursor: pointer;
+  }
+  #output_container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 200000;
+    background: rgba(0,0,0,0.8);
+    text-align: center;
+    display: none;
+  }
+  #output_container.on {
+    display: block;
+  }
+  #output {
+    margin: auto;
+  }
+  #close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #eee;
+    text-align: center;
+    cursor: pointer;
+    font-size: 40px;
+  }
+  #download {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #eee;
+    text-align: center;
+    cursor: pointer;
+    font-size: 40px;
+  }
+  iframe {
+    position: absolute;
+    left: -9000%;
+    top: -9000%;
+  }
+  </style>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="csshake.min.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="output_container" class="">
+  <canvas id="output"></canvas>
+  <div id="close"><i class="fa fa-close"></i></div>
+  <a id="download" download="tenlongren.png"><i class="fa fa-download"></i></a>
+</div>
+<div id="content">
+  <img id="helmet_layer" src="helmet_layer.png" style="display:none;">
+  <img id="helmet_layer_2x" src="helmet_layer_2x.png" style="display:none;">
+  <img id="helmet_layer_4x" src="helmet_layer_4x.png" style="display:none;">
+  <div id="viewport">
+    <img src="helmet_layer.png" class="shake shake-constant">
+    <input type="file" id="file-selector" accept="image/*">
+    <p>點擊頭罩上傳圖片<br>或直接拖曳圖片到本頁<br><br><small>原始出處<br><a href="http://goo.gl/KyvkKi" target="_blank">http://goo.gl/KyvkKi</a></small></p>
+  </div>
+</div>
+<script type="text/javascript" src="tenlongrener.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script>
+$('#viewport').mouseenter(function(){
+  var iframe = '<iframe width=\"560\" height=\"315\" src=\"\/\/www.youtube.com\/embed\/KnQGs24U1e8?start=11&autoplay=1\" frameborder=\"0\" allowfullscreen><\/iframe>';
+  $('body').append(iframe);
+}).mouseleave(function(){
+  $('iframe').remove();
+});
+</script>
+</body>
+</html>
