@@ -618,6 +618,7 @@ function detectNewImage(src, async) {
 
     function post(comp) {
       if(comp.length > 0) {
+        document.getElementById("loading").style.display = "none";
         document.getElementById("output_container").className += document.getElementById("output_container").className ? '' : 'on';
         for (var i = 0; i < comp.length; i++) {
           var new_x = (comp[i].x-comp[i].width*0.75)*scale,
@@ -636,7 +637,8 @@ function detectNewImage(src, async) {
       }
       else {
         document.getElementById("output_container").className="";
-        alert('找不到人臉，換張圖吧')
+        document.getElementById("loading").style.display = "none";
+        alert('找不到人臉，換張圖吧');
       }
     }
 
@@ -665,6 +667,7 @@ function detectNewImage(src, async) {
 
 function handleLocalFile(file) {
   if (file.type.match(/image.*/)) {
+    document.getElementById("loading").style.display = "block";
     var reader = new FileReader();
     reader.onload = function(e) {
       detectNewImage(e.target.result, async);
