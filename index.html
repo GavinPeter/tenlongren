@@ -80,23 +80,28 @@
   #output {
     margin: auto;
   }
-  #close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    color: #eee;
-    text-align: center;
-    cursor: pointer;
-    font-size: 40px;
-  }
+  #close,
   #download {
     position: absolute;
     right: 20px;
-    bottom: 20px;
     color: #eee;
     text-align: center;
     cursor: pointer;
     font-size: 40px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background: #666;
+  }
+  #close:hover,
+  #download:hover {
+    background: #999;
+  }
+  #close {
+    top: 20px;
+  }
+  #download {
+    bottom: 20px;
   }
   iframe {
     position: absolute;
