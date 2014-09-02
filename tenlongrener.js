@@ -617,20 +617,27 @@ function detectNewImage(src, async) {
     ctx.drawImage(image, 0, 0, newWidth, newHeight);
 
     function post(comp) {
-      for (var i = 0; i < comp.length; i++) {
-        var new_x = (comp[i].x-comp[i].width*0.75)*scale,
-            new_y = (comp[i].y-comp[i].height*0.75)*scale,
-            new_w = comp[i].width*scale*2.5,
-            new_h = comp[i].height*scale*2.5;
+      if(comp.length > 0) {
+        document.getElementById("output_container").className += document.getElementById("output_container").className ? '' : 'on';
+        for (var i = 0; i < comp.length; i++) {
+          var new_x = (comp[i].x-comp[i].width*0.75)*scale,
+              new_y = (comp[i].y-comp[i].height*0.75)*scale,
+              new_w = comp[i].width*scale*2.5,
+              new_h = comp[i].height*scale*2.5;
 
-        if(new_w <= 200)
-          ctx.drawImage(helmet_layer,new_x,new_y,new_w,new_h);
-        else if(new_w > 200 && new_w <= 400)
-          ctx.drawImage(helmet_layer_2x,new_x,new_y,new_w,new_h);
-        else
-          ctx.drawImage(helmet_layer_4x,new_x,new_y,new_w,new_h);
+          if(new_w <= 200)
+            ctx.drawImage(helmet_layer,new_x,new_y,new_w,new_h);
+          else if(new_w > 200 && new_w <= 400)
+            ctx.drawImage(helmet_layer_2x,new_x,new_y,new_w,new_h);
+          else
+            ctx.drawImage(helmet_layer_4x,new_x,new_y,new_w,new_h);
+        }
+        document.getElementById('download').href = canvas.toDataURL('image/png');
       }
-      document.getElementById('download').href = canvas.toDataURL('image/png');
+      else {
+        document.getElementById("output_container").className="";
+        alert('找不到人臉，換張圖吧')
+      }
     }
 
     if (async) {
@@ -657,7 +664,6 @@ function detectNewImage(src, async) {
 }
 
 function handleLocalFile(file) {
-  document.getElementById("output_container").className += document.getElementById("output_container").className ? '' : 'on';
   if (file.type.match(/image.*/)) {
     var reader = new FileReader();
     reader.onload = function(e) {
