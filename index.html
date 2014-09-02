@@ -139,8 +139,15 @@
 
   </script>
 </head>
-
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=807408499311778&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="output_container" class="">
   <canvas id="output"></canvas>
   <div id="close"><i class="fa fa-close"></i></div>
@@ -154,7 +161,7 @@
   <div id="viewport">
     <img src="helmet_layer.png" class="shake shake-constant">
     <input type="file" id="file-selector" accept="image/*">
-    <p>點擊頭罩上傳圖片<br>或直接拖曳圖片到本頁<br><br><small>原始出處<br><a href="http://goo.gl/KyvkKi" target="_blank">http://goo.gl/KyvkKi</a><br><a href="https://github.com/goooooooogle/tenlongren">Github</a></small></p>
+    <p>點擊頭罩上傳圖片<br>或直接拖曳圖片到本頁<br><br><small>原始出處<br><a href="http://goo.gl/KyvkKi" target="_blank">http://goo.gl/KyvkKi</a><br><a href="https://github.com/goooooooogle/tenlongren">Github</a></small><div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></p>
   </div>
 </div>
 <script type="text/javascript" src="tenlongrener-min.js"></script>
