@@ -108,7 +108,7 @@
   #download {
     bottom: 20px;
   }
-  iframe {
+  iframe.sound {
     position: absolute;
     left: -9000%;
     top: -9000%;
@@ -162,7 +162,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script>
 $('#viewport').mouseenter(function(){
-  var iframe = '<iframe width=\"560\" height=\"315\" src=\"\/\/www.youtube.com\/embed\/KnQGs24U1e8?start=11&autoplay=1\" frameborder=\"0\" allowfullscreen><\/iframe>';
+  var iframe = '<iframe id="sound" width=\"560\" height=\"315\" src=\"\/\/www.youtube.com\/embed\/KnQGs24U1e8?start=11&autoplay=1\" frameborder=\"0\" allowfullscreen><\/iframe>';
   $('body').append(iframe);
 }).mouseleave(function(){
   $('iframe').remove();
