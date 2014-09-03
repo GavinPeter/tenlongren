@@ -1,0 +1,18 @@
+
+    <a href="javascript:(function(){
+      if (!($ = window.jQuery)) {
+        script = document.createElement( 'script' );
+        script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
+        script.onload=tenlongrenerAllImage;
+        document.body.appendChild(script);
+      }
+      else {
+        tenlongrenerAllImage()
+      }
+      function tenlongrenerAllImage() {
+        $('img').each(function(){
+          $(this).hide();
+        })
+      }
+
+    })();">把我拉到書籤列</a>
