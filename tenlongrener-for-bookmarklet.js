@@ -607,7 +607,7 @@ function detectNewImage(src, async, target) {
     canvas.style.height = newHeight.toString() + "px";
     ctx.drawImage(image, 0, 0, newWidth, newHeight);
 
-    function post(comp) {
+    function post(comp,target) {
       if(comp.length > 0) {
         for (var i = 0; i < comp.length; i++) {
           var new_x = (comp[i].x-comp[i].width*0.75),
@@ -622,7 +622,7 @@ function detectNewImage(src, async, target) {
           else
             ctx.drawImage(helmet_layer_4x,new_x,new_y,new_w,new_h);
         }
-        document.getElementsByTagName('img')[i].src = canvas.toDataURL('image/jpeg');
+        document.getElementsByTagName('img')[target].src = canvas.toDataURL('image/jpeg');
       }
     }
 
