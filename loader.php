@@ -6,7 +6,8 @@
     $url = str_replace('bonana://', 'http://', $url);
     $url = str_replace('bonanas://', 'https://', $url);
     $data = file_get_contents($url);
-    echo $base64 = 'data:image/jpeg;base64,'.base64_encode($data);
+    $base64 = 'data:image/jpeg;base64,'.base64_encode($data);
+    echo '<div>'.$base64.'</div>';
 	}
   else {
     echo 'Bonana King';
