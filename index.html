@@ -125,6 +125,12 @@
     line-height: 310px;
     display: none;
   }
+  #fblike {
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    z-index: 900000;
+  }
   </style>
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="csshake.min.css" media="screen" rel="stylesheet" type="text/css" />
@@ -139,8 +145,18 @@
 
   </script>
 </head>
-
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=807408499311778&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div id="fblike">
+  <div class="fb-like" data-href="http://goooooooogle.github.io/tenlongren/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+</div>
 <div id="output_container" class="">
   <canvas id="output"></canvas>
   <div id="close"><i class="fa fa-close"></i></div>
@@ -155,7 +171,6 @@
     <img src="helmet_layer.png" class="shake shake-constant">
     <input type="file" id="file-selector" accept="image/*">
     <p>點擊頭罩上傳圖片<br>或直接拖曳圖片到本頁<br><br><small>原始出處<br><a href="http://goo.gl/KyvkKi" target="_blank">http://goo.gl/KyvkKi</a><br><a href="https://github.com/goooooooogle/tenlongren">Github</a></small></p>
-    <div class="fb-like" data-href="http://goooooooogle.github.io/tenlongren/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
   </div>
 </div>
 <script type="text/javascript" src="tenlongrener-min.js"></script>
@@ -165,7 +180,7 @@ $('#viewport').mouseenter(function(){
   var iframe = '<iframe id="sound" width=\"560\" height=\"315\" src=\"\/\/www.youtube.com\/embed\/KnQGs24U1e8?start=11&autoplay=1\" frameborder=\"0\" allowfullscreen><\/iframe>';
   $('body').append(iframe);
 }).mouseleave(function(){
-  $('iframe').remove();
+  $('#sound').remove();
 });
 </script>
 </body>
