@@ -715,7 +715,7 @@ function tenlongrenerEvents() {
   $(document).bind('paste', function(e) {
     var url = e.originalEvent.clipboardData.getData('Text');
     url = url.replace('http://','bonana://').replace('https://','bonanas://');
-    url = "http://tenlongren.kxgen.net/loader.php?src="+url;
+    url = "http://base64.kxgen.net/?src="+url;
     $.ajax('http://query.yahooapis.com/v1/public/yql', {
       type: 'get',
       data: {
