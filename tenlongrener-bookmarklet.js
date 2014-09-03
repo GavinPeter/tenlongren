@@ -655,7 +655,7 @@ function detectNewImage(src, async, target, true_w, true_h) {
 }
 
 function tenlongrenerEvents() {
-  $('body').append('<canvas id="tenlongren_output" style="display:none;"></canvas><img id="helmet_layer" src="http://goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
+  $('body').append('<canvas id="tenlongren_output" style="display:none;"></canvas><img id="helmet_layer" src="//goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="//goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="//goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
 }
 
 if (!($ = window.jQuery)) {
