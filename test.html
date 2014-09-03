@@ -82,7 +82,7 @@
   <div id="viewport">
       <a href="javascript:(function(){
         script = document.createElement( 'script' );
-        script.src = 'http://goooooooogle.github.io/tenlongren/tenlongrener-for-bookmarklet.js';
+        script.src = 'http://127.0.0.1/tenlongren/tenlongrener-for-bookmarklet.js';
         script.onload=tenlongrenerAllImage;
         document.body.appendChild(script);
         function tenlongrenerAllImage() {
@@ -90,6 +90,8 @@
           $('img').each(function(){
             var tenlongClass = 'tenlongrenclass'+i;
             $(this).addClass(tenlongClass);
+            $('body').append('<canvas id='+tenlongClass+'></canvas>');
+            $('#'+tenlongClass).hide();
             var src = $(this).attr('src');
             if(src.substr(0,7).toLowerCase() !== 'http://' || src.substr(0,8).toLowerCase() == 'https://') {
               src = $(location).attr('href')+src;
@@ -116,7 +118,7 @@
         }
       })();">把我拉到書籤列</a>
   </div>
-  <img src="http://goooooooogle.github.io/tenlongren/example.jpg" style="display:none;">
+  <img src="http://goooooooogle.github.io/tenlongren/example.jpg">
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </body>
