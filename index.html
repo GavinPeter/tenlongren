@@ -177,18 +177,9 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="tenlongrener.js"></script>
 <script>
-$('#viewport').mouseenter(function(){
-  var iframe = '<iframe id="sound" width=\"560\" height=\"315\" src=\"\/\/www.youtube.com\/embed\/KnQGs24U1e8?start=11&autoplay=1\" frameborder=\"0\" allowfullscreen><\/iframe>';
-  $('body').append(iframe);
-}).mouseleave(function(){
-  $('#sound').remove();
-});
-$(document).bind('paste', function(e) {
-  var url = e.originalEvent.clipboardData.getData('Text');
-  if (url.length > 0) {
-    detectNewImage("loader.php?src=" + encodeURIComponent((url.substr(0, 7).toLowerCase() == "http://") ? url : "http://" + url), async);
-  }
-});
+$("#close").click(function(){
+  $('#output_container').removeClass();
+})
 </script>
 </body>
 </html>

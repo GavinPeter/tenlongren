@@ -593,6 +593,7 @@ function getImageDim(image) {
 }
 
 function detectNewImage(src, async) {
+  document.getElementById("helmet_button").className = "shake shake-constant";
   var image = new Image();
   var canvas = document.getElementById("output");
   var ctx = canvas.getContext("2d");
@@ -670,13 +671,60 @@ function detectNewImage(src, async) {
 
 function handleLocalFile(file) {
   if (file.type.match(/image.*/)) {
-    document.getElementById("helmet_button").className = "shake shake-constant";
     var reader = new FileReader();
     reader.onload = function(e) {
       detectNewImage(e.target.result, async);
     };
     reader.readAsDataURL(file);
   }
+}
+
+function tenlongrenerEvents() {
+  $('#download').on('click',function(){
+    this.href = $("output").toDataURL();
+    this.download = 'tenlongren.png';
+  });
+  $("body").on('dragover',function(e){
+    e.stopPropagation();
+    e.preventDefault();
+  });
+  if (agent.browser == "mozilla") {
+    $('#file-selector').css('display','none');
+    $('#file-selector').on('dragover',function(e){
+      e.stopPropagation();
+      e.preventDefault();
+    });
+    $('#viewport').on('click',function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      $('#file-selector').click();
+    });
+  }
+  $("#file-selector").on('change',function(e){
+    var files = this.files;
+    if (files.length)
+      handleLocalFile(files[0]);
+  });
+  document.getElementsByTagName("body")[0].addEventListener("drop", function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    var files = e.dataTransfer.files;
+    if (files.length)
+      handleLocalFile(files[0]);
+  }, false);
+  $(document).bind('paste', function(e) {
+    var url = e.originalEvent.clipboardData.getData('Text');
+    url = url.replace('http://','bonana://').replace('https://','bonanas://');
+    url = "loader.php?src="+url;
+    $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "html",
+      success: function(data){
+        detectNewImage(data, async);
+      }
+    });
+  });
 }
 
 if (!($ = window.jQuery)) {
@@ -688,151 +736,3 @@ if (!($ = window.jQuery)) {
 else {
   tenlongrenerEvents()
 }
-
-function tenlongrenerEvents() {
-  $('#download').on('click',function(){
-    this.href = $("output").toDataURL();
-    this.download = 'tenlongren.png';
-  });
-  $("body").on('dragover',function(e){
-    e.stopPropagation();
-    e.preventDefault();
-  });
-  if (agent.browser == "mozilla") {
-    $('#file-selector').css('display','none');
-    $('#file-selector').on('dragover',function(e){
-      e.stopPropagation();
-      e.preventDefault();
-    });
-    $('#viewport').on('click',function(e){
-      e.stopPropagation();
-      e.preventDefault();
-      $('#file-selector').click();
-    });
-  }
-  $("#file-selector").on('change',function(e){
-    var files = this.files;
-    if (files.length)
-      handleLocalFile(files[0]);
-  });
-
-  /* not work
-  $("body").on('drop',function(e){
-    e.stopPropagation();
-    e.preventDefault();
-    var files = e.dataTransfer.files;
-    if (files.length)
-      handleLocalFile(files[0]);
-  });
-  */
-
-  document.getElementsByTagName("body")[0].addEventListener("drop", function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-
-    var files = e.dataTransfer.files;
-
-    if (files.length)
-      handleLocalFile(files[0]);
-  }, false);
-
-  $("#close").click(function(){
-    $('#output_container').removeClass();
-  })
-}
-
-/*
-if (!($ = window.jQuery)) {
-  script = document.createElement( 'script' );
-  script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
-  script.onload = tenlongrenerEvents;
-  document.body.appendChild(script);
-}
-else {
-  tenlongrenerEvents();
-}
-
-function tenlongrenerEvents() {
-  $('#download').on('click',function(){
-    this.href = $("output").toDataURL();
-    this.download = 'tenlongren.png';
-  });
-  $("body").on('dragover',function(e){
-    e.stopPropagation();
-    e.preventDefault();
-  });
-  if (agent.browser == "mozilla") {
-    $('#file-selector').css('display','none');
-    $('#file-selector').on('dragover',function(e){
-      e.stopPropagation();
-      e.preventDefault();
-    });
-    $('#viewport').on('click',function(e){
-      e.stopPropagation();
-      e.preventDefault();
-      $('#file-selector').click();
-    });
-  }
-  $("#file-selector").on('change',function(e){
-    var files = this.files;
-    if (files.length)
-      handleLocalFile(files[0]);
-  });
-  $("body").on('drop',function(e){
-    e.stopPropagation();
-    e.preventDefault();
-    var files = e.dataTransfer.files;
-    if (files.length)
-      handleLocalFile(files[0]);
-  });
-  $("#close").click(function(){
-    $('#output_container').removeClass();
-  })
-}
-*/
-
-
-/*
-document.getElementById('download').addEventListener('click', function() {
-    this.href = document.getElementById("output").toDataURL();
-    this.download = 'tenlongren.png';
-}, false);
-
-document.getElementsByTagName("body")[0].addEventListener("dragover", function(e) {
-  e.stopPropagation();
-  e.preventDefault();
-}, false);
-
-if (agent.browser == "mozilla") {
-  document.getElementById("file-selector").style.display = "none";
-  document.getElementById("file-selector").addEventListener("click", function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-  }, false);
-  document.getElementById("viewport").addEventListener("click", function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    document.getElementById("file-selector").click();
-  }, false);
-}
-
-document.getElementById("file-selector").addEventListener("change", function(e) {
-  var files = this.files;
-  if (files.length)
-    handleLocalFile(files[0]);
-});
-
-document.getElementsByTagName("body")[0].addEventListener("drop", function(e) {
-  e.stopPropagation();
-  e.preventDefault();
-
-  var files = e.dataTransfer.files;
-
-  if (files.length)
-    handleLocalFile(files[0]);
-}, false);
-
-document.getElementById("close").addEventListener("click", function(e) {
-  document.getElementById("output_container").className="";
-});
-*/
