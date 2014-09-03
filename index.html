@@ -137,6 +137,13 @@
     top: 15px;
     z-index: 190000;
   }
+  #bookmarklet {
+    position: fixed;
+    bottom: 15px;
+    left: 10px;
+    max-width: 320px;
+    text-align: right;
+  }
   </style>
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="csshake.min.css" media="screen" rel="stylesheet" type="text/css" />
@@ -178,6 +185,45 @@
     <input type="file" id="file-selector" accept="image/*">
     <p>點擊頭罩選擇圖片<br>或直接拖曳圖片到本頁<br><br><small>原始出處<br><a href="http://goo.gl/KyvkKi" target="_blank">http://goo.gl/KyvkKi</a><br><a href="https://github.com/goooooooogle/tenlongren">Github</a></small></p>
   </div>
+</div>
+<div id="bookmarklet">
+  將這個連結「<a href="javascript:(function(){
+        script = document.createElement( 'script' );
+        script.src = 'http://goooooooogle.github.io/tenlongren/tenlongrener-bookmarklet.js';
+        script.onload=tenlongrenerAllImage;
+        document.body.appendChild(script);
+        function tenlongrenerAllImage() {
+          var i = 0;
+          $('img').each(function(){
+            var pos = $(this).position();
+            var tenlongClass = 'tenlongrenclass'+i;
+            $('body').append('<canvas id='+tenlongClass+'></canvas>');
+            $('#'+tenlongClass).css('position','absolute').css('top',pos.top).css('left',pos.left);
+            var src = $(this).attr('src');
+            if(src.substr(0,7).toLowerCase() !== 'http://' || src.substr(0,8).toLowerCase() == 'https://') {
+              src = $(location).attr('href')+src;
+            }
+            src = src.replace('http://','bonana://').replace('https://','bonanas://');
+            url = 'http://base64.kxgen.net/?src='+src;
+            $.ajax('http://query.yahooapis.com/v1/public/yql', {
+              type: 'get',
+              data: {
+                q: 'use \'http://www.datatables.org/data/htmlstring.xml\' as htmlstring; select * from htmlstring where url=\''+url+'\'',
+                format: 'json'
+              },
+              dataType: 'json',
+              success: function(r) {
+                var response;
+                response = r.query.results;
+                var data = response.result.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+                data = data[0].replace('<p>','').replace('</p>','');
+                detectNewImage(data, async, tenlongClass);
+              }
+            });
+            i++;
+          })
+        }
+      })();">戴上天龍罩</a>」拖曳到書籤列，然後在任何頁面按下這個連結就會自動幫所有人都戴頭罩
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript" src="tenlongrener-min.js"></script>
