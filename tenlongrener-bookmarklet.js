@@ -601,10 +601,6 @@ function detectNewImage(src, async, target) {
     var newWidth = dim.width,
         newHeight = dim.height;
 
-    canvas.width = newWidth;
-    canvas.style.width = newWidth.toString() + "px";
-    canvas.height = newHeight;
-    canvas.style.height = newHeight.toString() + "px";
     ctx.drawImage(image, 0, 0, newWidth, newHeight);
     function post(comp,target) {
       if(comp.length > 0) {
@@ -651,10 +647,11 @@ function detectNewImage(src, async, target) {
 
 }
 
-function tenlongrenerEvents() {
-  $('body').append('<canvas id="tenlongren_output" style="display:none;"></canvas><img id="helmet_layer" src="http://goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
-}
+$('body').append('<img id="helmet_layer" src="http://goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
 
+
+
+/*
 if (!($ = window.jQuery)) {
   script = document.createElement( 'script' );
   script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
@@ -664,5 +661,6 @@ if (!($ = window.jQuery)) {
 else {
   tenlongrenerEvents()
 }
+*/
 
 var tenlongStart = true;
