@@ -82,16 +82,16 @@
   <div id="viewport">
       <a href="javascript:(function(){
         script = document.createElement( 'script' );
-        script.src = 'http://127.0.0.1/tenlongren/tenlongrener-for-bookmarklet.js';
+        script.src = 'http://goooooooogle.github.io/tenlongren/tenlongrener-for-bookmarklet.js';
         script.onload=tenlongrenerAllImage;
         document.body.appendChild(script);
         function tenlongrenerAllImage() {
           var i = 0;
           $('img').each(function(){
+            var pos = $(this).position();
             var tenlongClass = 'tenlongrenclass'+i;
-            $(this).addClass(tenlongClass);
             $('body').append('<canvas id='+tenlongClass+'></canvas>');
-            $('#'+tenlongClass).hide();
+            $('#'+tenlongClass).css('position','absolute').css('top',pos.top).css('left',pos.left);
             var src = $(this).attr('src');
             if(src.substr(0,7).toLowerCase() !== 'http://' || src.substr(0,8).toLowerCase() == 'https://') {
               src = $(location).attr('href')+src;
