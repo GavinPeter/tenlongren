@@ -164,7 +164,6 @@
   <div id="close"><i class="fa fa-close"></i></div>
   <a id="download" download="tenlongren.png"><i class="fa fa-download"></i></a>
 </div>
-<div id="loading">等等喔</div>
 <div id="content">
   <img id="helmet_layer" src="helmet_layer.png" style="display:none;">
   <img id="helmet_layer_2x" src="helmet_layer_2x.png" style="display:none;">
@@ -175,14 +174,20 @@
     <p>點擊頭罩選擇圖片<br>或直接拖曳圖片到本頁<br><br><small>原始出處<br><a href="http://goo.gl/KyvkKi" target="_blank">http://goo.gl/KyvkKi</a><br><a href="https://github.com/goooooooogle/tenlongren">Github</a></small></p>
   </div>
 </div>
-<script type="text/javascript" src="tenlongrener-min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="tenlongrener.js"></script>
 <script>
 $('#viewport').mouseenter(function(){
   var iframe = '<iframe id="sound" width=\"560\" height=\"315\" src=\"\/\/www.youtube.com\/embed\/KnQGs24U1e8?start=11&autoplay=1\" frameborder=\"0\" allowfullscreen><\/iframe>';
   $('body').append(iframe);
 }).mouseleave(function(){
   $('#sound').remove();
+});
+$(document).bind('paste', function(e) {
+  var url = e.originalEvent.clipboardData.getData('Text');
+  if (url.length > 0) {
+    detectNewImage("loader.php?src=" + encodeURIComponent((url.substr(0, 7).toLowerCase() == "http://") ? url : "http://" + url), async);
+  }
 });
 </script>
 </body>
