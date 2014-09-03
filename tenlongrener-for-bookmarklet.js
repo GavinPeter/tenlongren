@@ -592,11 +592,11 @@ function getImageDim(image) {
   return result;
 }
 
-function detectNewImage(src, async) {
+function detectNewImage(src, async, target) {
   var image = new Image();
   var canvas = document.getElementById("tenlongren_output");
   var ctx = canvas.getContext("2d");
-  image.onload = function() {
+  image.onload = function(target) {
     var dim = getImageDim(image);
     var newWidth = dim.width,
         newHeight = dim.height;
@@ -607,7 +607,7 @@ function detectNewImage(src, async) {
     canvas.style.height = newHeight.toString() + "px";
     ctx.drawImage(image, 0, 0, newWidth, newHeight);
 
-    function post(comp) {
+    function post(comp,target) {
       if(comp.length > 0) {
         for (var i = 0; i < comp.length; i++) {
           var new_x = (comp[i].x-comp[i].width*0.75),
@@ -622,6 +622,7 @@ function detectNewImage(src, async) {
           else
             ctx.drawImage(helmet_layer_4x,new_x,new_y,new_w,new_h);
         }
+        document.getElementById(target).src = canvas.toDataURL('image/jpeg');
       }
     }
 
@@ -641,7 +642,7 @@ function detectNewImage(src, async) {
         "interval": 5,
         "min_neighbors": 1
       });
-      post(comp);
+      post(comp,target);
     }
 
   };
