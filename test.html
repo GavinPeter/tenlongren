@@ -81,52 +81,74 @@
 <div id="content">
   <div id="viewport">
 
-      <a href="javascript:(function(){if(typeof window.tenlongStart=='undefined'){script=document.createElement('script');script.src='http://goooooooogle.github.io/tenlongren/tenlongrener-bookmarklet-min.js';script.onload=tenlongrenerAllImage;document.body.appendChild(script)}else{tenlongrenerAllImage()}function tenlongrenerAllImage(){var i=0;$('img').each(function(){var pos=$(this).position();var tenlongClass='tenlongrenclass'+i;if($('#'+tenlongClass).length==0){$('body').append('<canvas id='+tenlongClass+'></canvas>');$('#'+tenlongClass).css('position','absolute').css('top',pos.top).css('left',pos.left)}var src=$(this).attr('src');if(src.substr(0,7).toLowerCase()!=='http://'||src.substr(0,8).toLowerCase()=='https://'){src=$(location).attr('href')+src}src=src.replace('http://','bonana://').replace('https://','bonanas://');url='http://base64.kxgen.net/?src='+src;$.ajax('http://query.yahooapis.com/v1/public/yql',{type:'get',data:{q:'use \'http://www.datatables.org/data/htmlstring.xml\' as htmlstring; select * from htmlstring where url=\''+url+'\'',format:'json'},dataType:'json',success:function(r){var response;response=r.query.results;var data=response.result.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);data=data[0].replace('<p>','').replace('</p>','');detectNewImage(data,async,tenlongClass)}});i++})}})();">把我拉到書籤列</a>
+      <a href="javascript:(function(){script=document.createElement('script');script.src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';script.onload=tenlongrenerGo;document.body.appendChild(script);function tenlongrenerGo(){if(typeof window.tenlongStart=='undefined'){script=document.createElement('script');script.src='http://goooooooogle.github.io/tenlongren/tenlongrener-bookmarklet-min.js';script.onload=tenlongrenerAllImage;document.body.appendChild(script)}else{tenlongrenerAllImage()}function tenlongrenerAllImage(){var i=0;$('img').each(function(){if($(this).attr('id')!=='helmet_layer'&&$(this).attr('id')!=='helmet_layer_2x'&&$(this).attr('id')!=='helmet_layer_4x'&&($(this).width()).toString()>=50&&($(this).height()).toString()>=50){var pos=$(this).offset(),position=$(this).css('position'),left=$(this).css('left'),right=$(this).css('right'),top=$(this).css('top'),bottom=$(this).css('bottom'),width=$(this).css('width'),height=$(this).css('height');var tenlongClass='tenlongrenclass'+i,tenlongClassFather=tenlongClass+'Father';if($('#'+tenlongClass).length==0){$(this).wrap('<div id='+tenlongClassFather+'></div>');$('#'+tenlongClassFather).css('position',position).css('left',left).css('right',right).css('top',top).css('bottom',bottom).css('width',width).css('height',height).css('background','url(http://hdweb.hdsh.ilc.edu.tw/modules/mod_jt_slideshow/images/loading.gif) no-repeat center center');$('#'+tenlongClassFather).append('<canvas id='+tenlongClass+'></canvas>');$('#'+tenlongClass).css('width','width').css('height',height);$(this).css('display','none')}var src=$(this).attr('src');if(src.substr(0,7).toLowerCase()!=='http://'||src.substr(0,8).toLowerCase()=='https://'){src=$(location).attr('href')+src}src=src.replace('http://','bonana://').replace('https://','bonanas://');url='http://base64.kxgen.net/?src='+src;$.ajax('http://query.yahooapis.com/v1/public/yql',{type:'get',data:{q:'use \'http://www.datatables.org/data/htmlstring.xml\' as htmlstring; select * from htmlstring where url=\''+url+'\'',format:'json'},dataType:'json',success:function(r){var response;response=r.query.results;var data=response.result.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);data=data[0].replace('<p>','').replace('</p>','');detectNewImage(data,async,tenlongClass,width,height)}});i++}})}}})();">戴上天龍罩</a>
 
 
       <a href="javascript:(function(){
-      if (typeof window.tenlongStart == 'undefined') {
-          script = document.createElement( 'script' );
-          script.src = 'http://goooooooogle.github.io/tenlongren/tenlongrener-bookmarklet-min.js';
-          script.onload=tenlongrenerAllImage;
-          document.body.appendChild(script);
-        }
-        else {
-          tenlongrenerAllImage();
-        }
 
-        function tenlongrenerAllImage() {
-          var i = 0;
-          $('img').each(function(){
-            var pos = $(this).offset();
-            var tenlongClass = 'tenlongrenclass'+i;
-            if($('#'+tenlongClass).length == 0) {
-              $('body').append('<canvas id='+tenlongClass+'></canvas>');
-              $('#'+tenlongClass).css('position','absolute').css('top',pos.top).css('left',pos.left);
-            }
-            var src = $(this).attr('src');
-            if(src.substr(0,7).toLowerCase() !== 'http://' || src.substr(0,8).toLowerCase() == 'https://') {
-              src = $(location).attr('href')+src;
-            }
-            src = src.replace('http://','bonana://').replace('https://','bonanas://');
-            url = 'http://base64.kxgen.net/?src='+src;
-            $.ajax('http://query.yahooapis.com/v1/public/yql', {
-              type: 'get',
-              data: {
-                q: 'use \'http://www.datatables.org/data/htmlstring.xml\' as htmlstring; select * from htmlstring where url=\''+url+'\'',
-                format: 'json'
-              },
-              dataType: 'json',
-              success: function(r) {
-                var response;
-                response = r.query.results;
-                var data = response.result.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
-                data = data[0].replace('<p>','').replace('</p>','');
-                detectNewImage(data, async, tenlongClass);
+      script = document.createElement( 'script' );
+      script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
+      script.onload = tenlongrenerGo;
+      document.body.appendChild(script);
+
+      function tenlongrenerGo() {
+        if (typeof window.tenlongStart == 'undefined') {
+            script = document.createElement( 'script' );
+            script.src = 'http://goooooooogle.github.io/tenlongren/tenlongrener-bookmarklet-min.js';
+            script.onload=tenlongrenerAllImage;
+            document.body.appendChild(script);
+          }
+          else {
+            tenlongrenerAllImage();
+          }
+
+          function tenlongrenerAllImage() {
+            var i = 0;
+            $('img').each(function(){
+              if($(this).attr('id')!=='helmet_layer' && $(this).attr('id')!=='helmet_layer_2x' && $(this).attr('id')!=='helmet_layer_4x' && ($(this).width()).toString() >= 50 && ($(this).height()).toString() >= 50){
+                var pos = $(this).offset(),
+                    position = $(this).css('position'),
+                    left = $(this).css('left'),
+                    right = $(this).css('right'),
+                    top = $(this).css('top'),
+                    bottom = $(this).css('bottom'),
+                    width = $(this).css('width'),
+                    height = $(this).css('height');
+
+                var tenlongClass = 'tenlongrenclass'+i,
+                    tenlongClassFather = tenlongClass+'Father';
+                if($('#'+tenlongClass).length == 0) {
+                  $(this).wrap('<div id='+tenlongClassFather+'></div>');
+                  $('#'+tenlongClassFather).css('position',position).css('left',left).css('right',right).css('top',top).css('bottom',bottom).css('width',width).css('height',height).css('background','url(http://hdweb.hdsh.ilc.edu.tw/modules/mod_jt_slideshow/images/loading.gif) no-repeat center center');
+                  $('#'+tenlongClassFather).append('<canvas id='+tenlongClass+'></canvas>');
+                  $('#'+tenlongClass).css('width','width').css('height',height);
+                  $(this).css('display','none');
+                }
+                var src = $(this).attr('src');
+                if(src.substr(0,7).toLowerCase() !== 'http://' || src.substr(0,8).toLowerCase() == 'https://') {
+                  src = $(location).attr('href')+src;
+                }
+                src = src.replace('http://','bonana://').replace('https://','bonanas://');
+                url = 'http://base64.kxgen.net/?src='+src;
+                $.ajax('http://query.yahooapis.com/v1/public/yql', {
+                  type: 'get',
+                  data: {
+                    q: 'use \'http://www.datatables.org/data/htmlstring.xml\' as htmlstring; select * from htmlstring where url=\''+url+'\'',
+                    format: 'json'
+                  },
+                  dataType: 'json',
+                  success: function(r) {
+                    var response;
+                    response = r.query.results;
+                    var data = response.result.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+                    data = data[0].replace('<p>','').replace('</p>','');
+                    detectNewImage(data, async, tenlongClass, width, height);
+                  }
+                });
+                i++;
               }
-            });
-            i++;
-          })
+            })
+          }
         }
       })();">把我拉到書籤列</a>
   </div>

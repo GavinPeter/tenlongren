@@ -592,7 +592,7 @@ function getImageDim(image) {
   return result;
 }
 
-function detectNewImage(src, async, target) {
+function detectNewImage(src, async, target, true_w, true_h) {
   var image = new Image();
   var canvas = document.getElementById(target);
   var ctx = canvas.getContext("2d");
@@ -606,7 +606,7 @@ function detectNewImage(src, async, target) {
     canvas.height = newHeight;
     canvas.style.height = newHeight.toString() + "px";
     ctx.drawImage(image, 0, 0, newWidth, newHeight);
-    function post(comp,target) {
+    function post(comp,target,true_w,true_h) {
       if(comp.length > 0) {
         for (var i = 0; i < comp.length; i++) {
           var new_x = (comp[i].x-comp[i].width*0.75),
@@ -621,9 +621,12 @@ function detectNewImage(src, async, target) {
           else
             ctx.drawImage(helmet_layer_4x,new_x,new_y,new_w,new_h);
         }
+        canvas.style.width = true_w;
+        canvas.style.height = true_h;
       }
       else {
         $('#'+target).hide();
+        $('#'+target).parent().find('img').show();
       }
     }
 
@@ -643,7 +646,7 @@ function detectNewImage(src, async, target) {
         "interval": 5,
         "min_neighbors": 1
       });
-      post(comp,target);
+      post(comp,target,true_w,true_h);
     }
 
   };
