@@ -594,7 +594,7 @@ function getImageDim(image) {
 
 function detectNewImage(src, async, target) {
   var image = new Image();
-  var canvas = document.getElementById("output");
+  var canvas = document.getElementById("tenlongren_output");
   var ctx = canvas.getContext("2d");
   image.onload = function() {
     var dim = getImageDim(image);
@@ -650,7 +650,7 @@ function detectNewImage(src, async, target) {
 }
 
 function tenlongrenerEvents() {
-
+  $('body').append('<canvas id="tenlongren_output"></canvas>');
 }
 
 if (!($ = window.jQuery)) {
