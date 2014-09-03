@@ -80,18 +80,30 @@
 </div>
 <div id="content">
   <div id="viewport">
+
+      <a href="javascript:(function(){if(typeof window.tenlongStart=='undefined'){script=document.createElement('script');script.src='http://goooooooogle.github.io/tenlongren/tenlongrener-bookmarklet-min.js';script.onload=tenlongrenerAllImage;document.body.appendChild(script)}else{tenlongrenerAllImage()}function tenlongrenerAllImage(){var i=0;$('img').each(function(){var pos=$(this).position();var tenlongClass='tenlongrenclass'+i;if($('#'+tenlongClass).length==0){$('body').append('<canvas id='+tenlongClass+'></canvas>');$('#'+tenlongClass).css('position','absolute').css('top',pos.top).css('left',pos.left)}var src=$(this).attr('src');if(src.substr(0,7).toLowerCase()!=='http://'||src.substr(0,8).toLowerCase()=='https://'){src=$(location).attr('href')+src}src=src.replace('http://','bonana://').replace('https://','bonanas://');url='http://base64.kxgen.net/?src='+src;$.ajax('http://query.yahooapis.com/v1/public/yql',{type:'get',data:{q:'use \'http://www.datatables.org/data/htmlstring.xml\' as htmlstring; select * from htmlstring where url=\''+url+'\'',format:'json'},dataType:'json',success:function(r){var response;response=r.query.results;var data=response.result.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);data=data[0].replace('<p>','').replace('</p>','');detectNewImage(data,async,tenlongClass)}});i++})}})();">把我拉到書籤列</a>
+
+
       <a href="javascript:(function(){
-        script = document.createElement( 'script' );
-        script.src = 'http://goooooooogle.github.io/tenlongren/tenlongrener-bookmarklet.js';
-        script.onload=tenlongrenerAllImage;
-        document.body.appendChild(script);
+      if (typeof window.tenlongStart == 'undefined') {
+          script = document.createElement( 'script' );
+          script.src = 'http://goooooooogle.github.io/tenlongren/tenlongrener-bookmarklet-min.js';
+          script.onload=tenlongrenerAllImage;
+          document.body.appendChild(script);
+        }
+        else {
+          tenlongrenerAllImage();
+        }
+
         function tenlongrenerAllImage() {
           var i = 0;
           $('img').each(function(){
             var pos = $(this).position();
             var tenlongClass = 'tenlongrenclass'+i;
-            $('body').append('<canvas id='+tenlongClass+'></canvas>');
-            $('#'+tenlongClass).css('position','absolute').css('top',pos.top).css('left',pos.left);
+            if($('#'+tenlongClass).length == 0) {
+              $('body').append('<canvas id='+tenlongClass+'></canvas>');
+              $('#'+tenlongClass).css('position','absolute').css('top',pos.top).css('left',pos.left);
+            }
             var src = $(this).attr('src');
             if(src.substr(0,7).toLowerCase() !== 'http://' || src.substr(0,8).toLowerCase() == 'https://') {
               src = $(location).attr('href')+src;
@@ -118,7 +130,7 @@
         }
       })();">把我拉到書籤列</a>
   </div>
-  <img src="http://goooooooogle.github.io/tenlongren/example.jpg">
+  <img src="http://goooooooogle.github.io/tenlongren/example.jpg" style="position: absolute; left:50%; bottom: 0;">
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </body>

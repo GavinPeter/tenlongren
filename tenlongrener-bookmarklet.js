@@ -664,3 +664,5 @@ if (!($ = window.jQuery)) {
 else {
   tenlongrenerEvents()
 }
+
+var tenlongStart = true;
