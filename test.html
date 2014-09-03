@@ -92,6 +92,7 @@
             if(src.substr(0,7).toLowerCase() !== 'http://' || src.substr(0,8).toLowerCase() == 'https://') {
               src = $(location).attr('href')+src;
             }
+            src = src.replace('http://','bonana://').replace('https://','bonanas://');
             url = 'http://base64.kxgen.net/?src='+src;
             $.ajax('http://query.yahooapis.com/v1/public/yql', {
               type: 'get',
