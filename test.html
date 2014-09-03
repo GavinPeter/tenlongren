@@ -88,6 +88,8 @@
         function tenlongrenerAllImage() {
           var i = 0;
           $('img').each(function(){
+            var tenlongClass = 'tenlongrenclass'+i;
+            $(this).addClass(tenlongClass);
             var src = $(this).attr('src');
             if(src.substr(0,7).toLowerCase() !== 'http://' || src.substr(0,8).toLowerCase() == 'https://') {
               src = $(location).attr('href')+src;
@@ -106,7 +108,7 @@
                 response = r.query.results;
                 var data = response.result.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
                 data = data[0].replace('<p>','').replace('</p>','');
-                detectNewImage(data, async);
+                detectNewImage(data, async, tenlongClass);
               }
             });
             i++;
