@@ -637,7 +637,8 @@ function detectNewImage(src, async) {
           else
             ctx.drawImage(helmet_layer_4x,new_x,new_y,new_w,new_h);
         }
-        document.getElementById('download').href = canvas.toDataURL('image/png');
+        document.getElementById('output-img').src = canvas.toDataURL('image/jpeg');
+        document.getElementById('download').href = canvas.toDataURL('image/jpeg');
       }
       else {
         document.getElementById("output_container").className="";
