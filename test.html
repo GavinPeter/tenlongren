@@ -98,7 +98,7 @@
         function tenlongrenerAllImage() {
           var i = 0;
           $('img').each(function(){
-            var pos = $(this).position();
+            var pos = $(this).offset();
             var tenlongClass = 'tenlongrenclass'+i;
             if($('#'+tenlongClass).length == 0) {
               $('body').append('<canvas id='+tenlongClass+'></canvas>');
