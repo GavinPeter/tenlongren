@@ -592,7 +592,7 @@ function getImageDim(image) {
   return result;
 }
 
-function detectNewImage(src, async, target) {
+function detectNewImage(src, async) {
   var image = new Image();
   var canvas = document.getElementById("tenlongren_output");
   var ctx = canvas.getContext("2d");
@@ -607,7 +607,7 @@ function detectNewImage(src, async, target) {
     canvas.style.height = newHeight.toString() + "px";
     ctx.drawImage(image, 0, 0, newWidth, newHeight);
 
-    function post(comp,target) {
+    function post(comp) {
       if(comp.length > 0) {
         for (var i = 0; i < comp.length; i++) {
           var new_x = (comp[i].x-comp[i].width*0.75),
@@ -642,7 +642,7 @@ function detectNewImage(src, async, target) {
         "interval": 5,
         "min_neighbors": 1
       });
-      post(comp,target);
+      post(comp);
     }
 
   };
