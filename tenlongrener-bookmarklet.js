@@ -592,7 +592,7 @@ function getImageDim(image) {
   return result;
 }
 
-function detectNewImage(src, async, target) {
+function detectNewImage(src, async, target, true_w, true_h) {
   var image = new Image();
   var canvas = document.getElementById(target);
   var ctx = canvas.getContext("2d");
@@ -601,8 +601,12 @@ function detectNewImage(src, async, target) {
     var newWidth = dim.width,
         newHeight = dim.height;
 
+    canvas.width = newWidth;
+    canvas.style.width = newWidth.toString() + "px";
+    canvas.height = newHeight;
+    canvas.style.height = newHeight.toString() + "px";
     ctx.drawImage(image, 0, 0, newWidth, newHeight);
-    function post(comp,target) {
+    function post(comp,target,true_w,true_h) {
       if(comp.length > 0) {
         for (var i = 0; i < comp.length; i++) {
           var new_x = (comp[i].x-comp[i].width*0.75),
@@ -617,9 +621,12 @@ function detectNewImage(src, async, target) {
           else
             ctx.drawImage(helmet_layer_4x,new_x,new_y,new_w,new_h);
         }
+        canvas.style.width = true_w;
+        canvas.style.height = true_h;
       }
       else {
         $('#'+target).hide();
+        $('#'+target).parent().find('img').show();
       }
     }
 
@@ -639,7 +646,7 @@ function detectNewImage(src, async, target) {
         "interval": 5,
         "min_neighbors": 1
       });
-      post(comp,target);
+      post(comp,target,true_w,true_h);
     }
 
   };
@@ -647,11 +654,10 @@ function detectNewImage(src, async, target) {
 
 }
 
-$('body').append('<img id="helmet_layer" src="http://goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
+function tenlongrenerEvents() {
+  $('body').append('<canvas id="tenlongren_output" style="display:none;"></canvas><img id="helmet_layer" src="http://goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="http://goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
+}
 
-
-
-/*
 if (!($ = window.jQuery)) {
   script = document.createElement( 'script' );
   script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
@@ -661,6 +667,5 @@ if (!($ = window.jQuery)) {
 else {
   tenlongrenerEvents()
 }
-*/
 
 var tenlongStart = true;
