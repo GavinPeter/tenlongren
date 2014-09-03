@@ -655,12 +655,12 @@ function detectNewImage(src, async, target, true_w, true_h) {
 }
 
 function tenlongrenerEvents() {
-  $('body').append('<canvas id="tenlongren_output" style="display:none;"></canvas><img id="helmet_layer" src="//goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="//goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="//goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
+  $('body').append('<img id="helmet_layer" src="//goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="//goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="//goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
 }
 
 if (!($ = window.jQuery)) {
   script = document.createElement( 'script' );
-  script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
+  script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
   script.onload = tenlongrenerEvents;
   document.body.appendChild(script);
 }
