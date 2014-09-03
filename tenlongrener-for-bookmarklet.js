@@ -622,7 +622,7 @@ function detectNewImage(src, async, target) {
           else
             ctx.drawImage(helmet_layer_4x,new_x,new_y,new_w,new_h);
         }
-        $('body').append('<img src='+canvas.toDataURL('image/jpeg')+'>');
+        $('body').append('<img src="'+canvas.toDataURL('image/jpeg')+'>"');
       }
     }
 
