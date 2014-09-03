@@ -658,14 +658,9 @@ function tenlongrenerEvents() {
   $('body').append('<img id="helmet_layer" src="//goooooooogle.github.io/tenlongren/helmet_layer.png" style="display:none;"><img id="helmet_layer_2x" src="//goooooooogle.github.io/tenlongren/helmet_layer_2x.png" style="display:none;"><img id="helmet_layer_4x" src="//goooooooogle.github.io/tenlongren/helmet_layer_4x.png" style="display:none;">');
 }
 
-if (!($ = window.jQuery)) {
-  script = document.createElement( 'script' );
-  script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
-  script.onload = tenlongrenerEvents;
-  document.body.appendChild(script);
-}
-else {
-  tenlongrenerEvents()
-}
+script = document.createElement( 'script' );
+script.src = '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
+script.onload = tenlongrenerEvents;
+document.body.appendChild(script);
 
 var tenlongStart = true;
