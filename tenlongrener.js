@@ -714,6 +714,7 @@ function tenlongrenerEvents() {
       handleLocalFile(files[0]);
   }, false);
   $(document).bind('paste', function(e) {
+    $("#helmet_button").addClass("shake shake-constant");
     var url = e.originalEvent.clipboardData.getData('Text');
     url = url.replace('http://','bonana://').replace('https://','bonanas://');
     url = "http://base64.kxgen.net/?src="+url;
