@@ -626,6 +626,7 @@ function detectNewImage(src, async, target, true_w, true_h) {
       }
       else {
         $('#'+target).hide();
+        $('#'+target).parent().css('background','none');
         $('#'+target).parent().find('img').show();
       }
     }
