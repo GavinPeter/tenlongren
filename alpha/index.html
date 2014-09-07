@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Face Tracker</title>
+		<meta charset="utf-8">
+		<style>
+			#overlay {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			#container {
+				position : relative;
+				width : 700px;
+				height : 500px;
+			}
+		</style>
+	</head>
+	<body>
+    <script src="./js/clm.js"></script>
+    <script src="./js/svmfilter_webgl.js"></script>
+    <script src="./js/svmfilter_fft.js"></script>
+    <script src="./js/mossefilter.js"></script>
+    <script src="./models/model_pca_20_svm.js"></script>
+		<script src="./ext_js/utils.js"></script>
+		<script src="./ext_js/dat.gui.min.js"></script>
+		<script src="./ext_js/jsfeat-min.js"></script>
+		<script src="./ext_js/frontalface.js"></script>
+		<script src="./ext_js/jsfeat_detect.js"></script>
+		<script src="./ext_js/numeric-1.2.6.min.js"></script>
+		<script src="./ext_js/mosse.js"></script>
+		<script src="./ext_js/left_eye_filter.js"></script>
+		<script src="./ext_js/right_eye_filter.js"></script>
+		<script src="./ext_js/nose_filter.js"></script>
+		<script src="./ext_js/jquery.min.js"></script>
+		<script src="./ext_js/jquery.imgareaselect.pack.js"></script>
+		<script src="./ext_js/Filesaver.min.js"></script>
+
+		<div id="content">
+      <input type="file" class="btn" id="files" name="files[]" />
+			<div id="container">
+				<canvas id="image" width="900" height="642"></canvas>
+				<canvas id="overlay" width="900" height="642"></canvas>
+			</div>
+		</div>
+
+    <script>
+      document.addEventListener("clmtrackrNotFound", function(event) {
+        ctrack.stop();
+        alert("似乎發生了什麼問題")
+      }, false);
+      document.addEventListener("clmtrackrLost", function(event) {
+        ctrack.stop();
+        alert("似乎發生了什麼問題")
+      }, false);
+      document.addEventListener("clmtrackrConverged", function(event) {
+        cancelRequestAnimFrame(drawRequest);
+      }, false);
+
+      var cc = document.getElementById('image').getContext('2d');
+      var overlay = document.getElementById('overlay');
+      var overlayCC = overlay.getContext('2d');
+
+      //example
+      var img = new Image();
+      img.onload = function() {
+        cc.drawImage(img,0,0,900,642);
+      };
+      img.src = 'example2.jpg';
+
+      var ctrack = new clm.tracker({stopOnConvergence : true});
+      ctrack.init(pModel);
+      var drawRequest;
+
+      function animate(box) {
+        ctrack.start(document.getElementById('image'), box);
+        drawLoop();
+      }
+      function drawLoop() {
+        drawRequest = requestAnimFrame(drawLoop);
+        overlayCC.clearRect(0, 0, 720, 576);
+        if (ctrack.getCurrentPosition()) {
+          ctrack.draw(overlay);
+        }
+      }
+      function loadImage() {
+        if (fileList.indexOf(fileIndex) < 0) {
+          var reader = new FileReader();
+          reader.onload = (function(theFile) {
+            return function(e) {
+              var canvas = document.getElementById('image')
+              var cc = canvas.getContext('2d');
+              var img = new Image();
+              img.onload = function() {
+                if (img.height > 500 || img.width > 700) {
+                  var rel = img.height/img.width;
+                  var neww = 700;
+                  var newh = neww*rel;
+                  if (newh > 500) {
+                    newh = 500;
+                    neww = newh/rel;
+                  }
+                  canvas.setAttribute('width', neww);
+                  canvas.setAttribute('height', newh);
+                  cc.drawImage(img,0,0,neww, newh);
+                } else {
+                  canvas.setAttribute('width', img.width);
+                  canvas.setAttribute('height', img.height);
+                  cc.drawImage(img,0,0,img.width, img.height);
+                }
+              }
+              img.src = e.target.result;
+              animate();
+            };
+          })(fileList[fileIndex]);
+          reader.readAsDataURL(fileList[fileIndex]);
+          overlayCC.clearRect(0, 0, 720, 576);
+          ctrack.reset();
+        }
+      }
+      var fileList, fileIndex;
+      if (window.File && window.FileReader && window.FileList) {
+        function handleFileSelect(evt) {
+          var files = evt.target.files;
+          fileList = [];
+          for (var i = 0;i < files.length;i++) {
+            if (!files[i].type.match('image.*')) {
+              continue;
+            }
+            fileList.push(files[i]);
+          }
+          if (files.length > 0) {
+            fileIndex = 0;
+          }
+          loadImage();
+        }
+        document.getElementById('files').addEventListener('change', handleFileSelect, false);
+      }
+    </script>
+	</body>
+</html>
